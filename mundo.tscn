@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://mundo.gd" type="Script" id=1]
+[ext_resource path="res://mosquito.tscn" type="PackedScene" id=2]
+[ext_resource path="res://1.png" type="Texture" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interfaz.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -0.320007, -5.4304, 0, 0, 0, 0, 637.69, -2.09004, 0, 0, 0, 0, 637.69, 953.255, 0, 0, 0, 0, -0.320007, 949.914, 0, 0, 0, 0, -0.320007, -5.4304 )
+}
+
+[node name="mundo" type="Node"]
+script = ExtResource( 1 )
+mosquito = ExtResource( 2 )
+
+[node name="fondo" type="TextureRect" parent="."]
+margin_right = 1080.0
+margin_bottom = 1920.0
+texture = ExtResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="mosquitoTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="scoreTimer" type="Timer" parent="."]
+
+[node name="inicioTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="posicionInicial" type="Position2D" parent="."]
+position = Vector2( 320, 480 )
+
+[node name="camino" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="mosquitoPosicion" type="PathFollow2D" parent="camino"]
+position = Vector2( -0.320007, -5.4304 )
+rotation = 0.00523531
+
+[node name="interfaz" parent="." instance=ExtResource( 5 )]
+[connection signal="golpe" from="Player" to="." method="gameOver"]
+[connection signal="timeout" from="mosquitoTimer" to="." method="_on_mosquitoTimer_timeout"]
+[connection signal="timeout" from="scoreTimer" to="." method="_on_scoreTimer_timeout"]
+[connection signal="timeout" from="inicioTimer" to="." method="_on_inicioTimer_timeout"]
+[connection signal="iniciarJuego" from="interfaz" to="." method="nuevoJuego"]

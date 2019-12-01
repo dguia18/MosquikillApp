@@ -1,0 +1,53 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://mosquito.gd" type="Script" id=1]
+[ext_resource path="res://lazy-mosquito/mosquito_00.png" type="Texture" id=2]
+[ext_resource path="res://lazy-mosquito/mosquito_01.png" type="Texture" id=3]
+[ext_resource path="res://lazy-mosquito/mosquito_02.png" type="Texture" id=4]
+[ext_resource path="res://lazy-mosquito/mosquito_03.png" type="Texture" id=5]
+[ext_resource path="res://lazy-mosquito/mosquito_04.png" type="Texture" id=6]
+[ext_resource path="res://lazy-mosquito/mosquito_05.png" type="Texture" id=7]
+[ext_resource path="res://lazy-mosquito/mosquito_06.png" type="Texture" id=8]
+[ext_resource path="res://lazy-mosquito/mosquito_07.png" type="Texture" id=9]
+[ext_resource path="res://lazy-mosquito/mosquito_08.png" type="Texture" id=10]
+[ext_resource path="res://lazy-mosquito/mosquito_09.png" type="Texture" id=11]
+[ext_resource path="res://lazy-mosquito/mosquito_10.png" type="Texture" id=12]
+[ext_resource path="res://lazy-mosquito/mosquito_11.png" type="Texture" id=13]
+[ext_resource path="res://lazy-mosquito/mosquito_12.png" type="Texture" id=14]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.2161
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "volando",
+"speed": 5.0
+} ]
+
+[node name="mosquito" type="RigidBody2D"]
+position = Vector2( 20.2703, 15.6253 )
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+velocidadMinima = 150
+velocidadMaxima = 250
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 70.651, 70.651 )
+shape = SubResource( 1 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 70.0896, 69.6909 )
+scale = Vector2( 2.26657, 2.17288 )
+
+[node name="mosquitoSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 70.5558, 65.8623 )
+scale = Vector2( 0.3, 0.3 )
+frames = SubResource( 2 )
+animation = "volando"
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
