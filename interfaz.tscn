@@ -18,11 +18,44 @@ font_data = ExtResource( 2 )
 [node name="interfaz" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="lblScore" type="Label" parent="."]
+[node name="btnRigth" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -124.0
+margin_top = -79.5
+margin_bottom = 79.5
+action_mode = 0
+
+[node name="btnUp" type="Button" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -96.5
-margin_right = 96.5
+margin_left = -65.0
+margin_right = 65.0
+margin_bottom = 135.0
+action_mode = 0
+
+[node name="btnDown" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.5
+margin_top = -112.0
+margin_right = 64.5
+action_mode = 0
+
+[node name="btnLeft" type="Button" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -73.5
+margin_right = 121.0
+margin_bottom = 73.5
+action_mode = 0
+
+[node name="lblScore" type="Label" parent="."]
+margin_right = 193.0
 margin_bottom = 130.0
 custom_fonts/font = SubResource( 1 )
 text = "0"
@@ -34,10 +67,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -190.449
-margin_top = -278.257
-margin_right = 194.551
-margin_bottom = -148.257
+margin_left = -192.5
+margin_top = -65.0
+margin_right = 192.5
+margin_bottom = 65.0
 custom_fonts/font = SubResource( 2 )
 text = "MOSQUIKILL"
 align = 1
@@ -48,14 +81,23 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -100.0
-margin_top = -90.0
-margin_right = 100.0
+margin_left = -89.9789
+margin_top = -255.348
+margin_right = 110.021
+margin_bottom = -165.348
 custom_fonts/font = SubResource( 3 )
 text = "JUGAR"
 
 [node name="mensajeTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+[connection signal="button_up" from="btnRigth" to="." method="_on_btnRigth_button_up"]
+[connection signal="pressed" from="btnRigth" to="." method="_on_btnRight_pressed"]
+[connection signal="button_up" from="btnUp" to="." method="_on_btnUp_button_up"]
+[connection signal="pressed" from="btnUp" to="." method="_on_btnUp_pressed"]
+[connection signal="button_up" from="btnDown" to="." method="_on_btnDown_button_up"]
+[connection signal="pressed" from="btnDown" to="." method="_on_btnDown_pressed"]
+[connection signal="button_up" from="btnLeft" to="." method="_on_btnLeft_button_up"]
+[connection signal="pressed" from="btnLeft" to="." method="_on_btnLeft_pressed"]
 [connection signal="pressed" from="btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="timeout" from="mensajeTimer" to="." method="_on_mensajeTimer_timeout"]
