@@ -58,8 +58,8 @@ position = Vector2( 4.77031, -4.29517 )
 rotation = 0.00348399
 
 [node name="JoyStick" type="Sprite" parent="."]
-position = Vector2( 48.0965, 545.657 )
-scale = Vector2( 0.2, 0.2 )
+position = Vector2( 65.5499, 540.897 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 
 [node name="joyStickButton" type="TouchScreenButton" parent="JoyStick"]

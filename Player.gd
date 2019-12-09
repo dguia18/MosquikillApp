@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 export (int) var velocidad
 var movimiento = Vector2()
 var limite
@@ -8,6 +8,7 @@ var upDirection = false
 var downDirection = false
 var rigthDirection = false
 var leftDirection = false
+onready var joystick = get_parent().get_node("JoyStick/joyStickButton")
 
 func _ready():
 	#hide()
@@ -38,6 +39,7 @@ func _process(delta):
 		$AnimatedSprite.flip_h = movimiento.y > 0		
 	else:
 		$AnimatedSprite.animation = "frente"
+	move_and_slide(joystick.get_value()*100)
 		
 
 
