@@ -4,8 +4,7 @@ export (PackedScene) var mosquito
 var Score 
 
 func _ready():
-	randomize()
-	$audioMoscas.play()
+	randomize()	
 	
 func nuevoJuego():
 	Score = 0
@@ -13,11 +12,15 @@ func nuevoJuego():
 	$inicioTimer.start()
 	$interfaz.mostrarMensaje("CORRE FORREST,\n CORRE")
 	$interfaz.updateScore(Score)
+	$audioAbulancea.stop()
+	$audioMoscas.play()
 
 func gameOver():
 	$scoreTimer.stop()
 	$mosquitoTimer.stop()
 	$interfaz.gameOver()
+	$audioAbulancea.play()
+	$audioMoscas.stop()
 
 
 func _on_inicioTimer_timeout():

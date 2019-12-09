@@ -28,6 +28,20 @@ text = "MOSQUIKILL"
 align = 1
 valign = 1
 
+[node name="lblScore" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -188.984
+margin_top = -293.551
+margin_right = 196.016
+margin_bottom = -163.551
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 1
+valign = 1
+
 [node name="btnPlay" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -43,9 +57,5 @@ text = "JUGAR"
 [node name="mensajeTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
-
-[node name="lblScore" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 43.0
 [connection signal="pressed" from="btnPlay" to="." method="_on_btnPlay_pressed"]
 [connection signal="timeout" from="mensajeTimer" to="." method="_on_mensajeTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://mundo.gd" type="Script" id=1]
 [ext_resource path="res://mosquito.tscn" type="PackedScene" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://mundo.jpg" type="Texture" id=8]
 [ext_resource path="res://meta.jpg" type="Texture" id=9]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Audio/efecto_mosca.wav" type="AudioStream" id=11]
+[ext_resource path="res://Audio/efecto_mosca.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Audio/ambulancia_pasando.wav" type="AudioStream" id=12]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -102,6 +103,9 @@ rotation = 0.00348399
 
 [node name="audioMoscas" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
+[node name="audioAbulancea" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 [connection signal="down" from="interfaz" to="Player" method="directionDown"]
 [connection signal="iniciarJuego" from="interfaz" to="." method="nuevoJuego"]
 [connection signal="left" from="interfaz" to="Player" method="directionLeft"]

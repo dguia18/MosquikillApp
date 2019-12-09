@@ -1,6 +1,7 @@
 extends KinematicBody2D
 export (int) var velocidad
 var movimiento = Vector2()
+var collision = Vector2()
 var limite
 signal golpe
 
@@ -17,6 +18,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	movimiento = Vector2()
+	collision = Vector2()
 	if Input.is_action_pressed("ui_right") or rigthDirection:
 		movimiento.x += 1
 	if Input.is_action_pressed("ui_left") or leftDirection:
@@ -39,9 +41,9 @@ func _process(delta):
 		$AnimatedSprite.flip_h = movimiento.y > 0		
 	else:
 		$AnimatedSprite.animation = "frente"
-	var collision =  move_and_collide(joystick.get_value()*5)
+	collision =  move_and_collide(joystick.get_value()*3.5)
 	
-		
+	
 
 
 func _on_Player_body_entered(body):
