@@ -32,16 +32,16 @@ height = 131.319
 
 [node name="Player" type="Area2D"]
 position = Vector2( 309.187, 772.129 )
-scale = Vector2( 0.7, 0.7 )
+scale = Vector2( 0.140001, 0.10001 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-velocidad = 400
+velocidad = 100
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -0.272476, -49.1257 )
-scale = Vector2( 0.294828, 0.294247 )
+position = Vector2( 2.89334, -51.5001 )
+scale = Vector2( 0.305801, 0.300038 )
 frames = SubResource( 1 )
 animation = "frente"
 playing = true

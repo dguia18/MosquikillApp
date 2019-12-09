@@ -1,15 +1,22 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://mundo.gd" type="Script" id=1]
 [ext_resource path="res://mosquito.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interfaz.tscn" type="PackedScene" id=3]
-[ext_resource path="res://1.png" type="Texture" id=4]
+[ext_resource path="res://mundo.jpg" type="Texture" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://circle-outline.png" type="Texture" id=6]
+[ext_resource path="res://circle-outline pequenio.png" type="Texture" id=7]
+[ext_resource path="res://circle-blue.png" type="Texture" id=8]
+[ext_resource path="res://joyStickButton.gd" type="Script" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -0.320007, -5.4304, 0, 0, 0, 0, 637.69, -2.09004, 0, 0, 0, 0, 1924.68, 1.69702, 0, 0, 0, 0, 1928.67, 1064.79, 0, 0, 0, 0, 1.00897, 1068.18, 0, 0, 0, 0, -0.320007, -5.4304 )
+"points": PoolVector2Array( 0, 0, 0, 0, 4.77031, -4.29517, 0, 0, 0, 0, 637.69, -2.09004, 0, 0, 0, 0, 1927.18, 3.70552, 0, 0, 0, 0, 562.156, 3.66038, 0, 0, 0, 0, 571.843, 1021.74, 0, 0, 0, 0, 1.00897, 1068.18, 0, 0, 0, 0, -0.320007, -5.4304 )
 }
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 32.0
 
 [node name="mundo" type="Node"]
 script = ExtResource( 1 )
@@ -27,7 +34,7 @@ expand = true
 stretch_mode = 1
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 512, 300 )
+position = Vector2( 187.922, 584.887 )
 
 [node name="mosquitoTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -42,13 +49,25 @@ one_shot = true
 position = Vector2( 512, 300 )
 
 [node name="camino" type="Path2D" parent="."]
-position = Vector2( 2.24177, 2.42436 )
-scale = Vector2( 0.531608, 0.565602 )
+position = Vector2( 2.12566, 371.354 )
+scale = Vector2( 0.168752, 0.220219 )
 curve = SubResource( 1 )
 
 [node name="mosquitoPosicion" type="PathFollow2D" parent="camino"]
-position = Vector2( -0.320007, -5.4304 )
-rotation = 0.00523568
+position = Vector2( 4.77031, -4.29517 )
+rotation = 0.00348399
+
+[node name="JoyStick" type="Sprite" parent="."]
+position = Vector2( 48.0965, 545.657 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 6 )
+
+[node name="joyStickButton" type="TouchScreenButton" parent="JoyStick"]
+position = Vector2( 2.97885, -468.234 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 8 )
+shape = SubResource( 2 )
+script = ExtResource( 9 )
 [connection signal="down" from="interfaz" to="Player" method="directionDown"]
 [connection signal="iniciarJuego" from="interfaz" to="." method="nuevoJuego"]
 [connection signal="left" from="interfaz" to="Player" method="directionLeft"]
