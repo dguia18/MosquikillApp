@@ -8,7 +8,7 @@ var upDirection = false
 var downDirection = false
 var rigthDirection = false
 var leftDirection = false
-onready var joystick = get_parent().get_node("JoyStick/joyStickButton")
+onready var joystick = get_parent().get_node("interfaz/JoyStick/joyStickButton")
 
 func _ready():
 	#hide()
@@ -39,14 +39,17 @@ func _process(delta):
 		$AnimatedSprite.flip_h = movimiento.y > 0		
 	else:
 		$AnimatedSprite.animation = "frente"
-	move_and_slide(joystick.get_value()*100)
+	var collision =  move_and_collide(joystick.get_value()*0.3)
+	
 		
 
 
 func _on_Player_body_entered(body):
-	hide()
-	emit_signal("golpe")
-	$collisionPlayer.disabled = true
+	if "mosquito" in body.get_name():
+		print(body.get_name())
+		hide()
+		emit_signal("golpe")
+		$collisionPlayer.disabled = true
 
 func Inicio(posicion):
 	position = posicion

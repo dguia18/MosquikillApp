@@ -44,49 +44,11 @@ func _on_mosquitoTimer_timeout():
 	direccion += rand_range(-PI/4,PI/4)
 	mosquitou.rotation = direccion
 	mosquitou.set_linear_velocity(Vector2(rand_range(mosquitou.velocidadMinima, mosquitou.velocidadMaxima),0).rotated(direccion))
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+func _on_Area2D_body_entered(body):
 	
 	
-	
-	
+	if "Player" in body.get_name():
+		$interfaz.FinalOver()
 	
 	

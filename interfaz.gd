@@ -16,7 +16,15 @@ func mostrarMensaje(texto):
 	$mensajeTimer.start()
 	
 func gameOver():
-	mostrarMensaje("CORRE AL HOSPITAL MAS CERCANO")
+	mostrarMensaje("CORRE AL HOSPITAL\n MAS CERCANO")
+	yield($mensajeTimer, "timeout")
+	$btnPlay.show()
+	$lblMensaje.text = "MOSQUIKILL"
+	$lblMensaje.show()
+	$lblScore.text = "0"
+	
+func FinalOver():
+	mostrarMensaje("Continuara....")
 	yield($mensajeTimer, "timeout")
 	$btnPlay.show()
 	$lblMensaje.text = "MOSQUIKILL"

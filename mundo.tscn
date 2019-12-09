@@ -1,43 +1,84 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://mundo.gd" type="Script" id=1]
 [ext_resource path="res://mosquito.tscn" type="PackedScene" id=2]
 [ext_resource path="res://interfaz.tscn" type="PackedScene" id=3]
-[ext_resource path="res://mundo.jpg" type="Texture" id=4]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://circle-outline.png" type="Texture" id=6]
-[ext_resource path="res://circle-outline pequenio.png" type="Texture" id=7]
-[ext_resource path="res://circle-blue.png" type="Texture" id=8]
-[ext_resource path="res://joyStickButton.gd" type="Script" id=9]
+[ext_resource path="res://circle-outline.png" type="Texture" id=4]
+[ext_resource path="res://circle-outline pequenio.png" type="Texture" id=5]
+[ext_resource path="res://circle-blue.png" type="Texture" id=6]
+[ext_resource path="res://joyStickButton.gd" type="Script" id=7]
+[ext_resource path="res://mundo.jpg" type="Texture" id=8]
+[ext_resource path="res://meta.jpg" type="Texture" id=9]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=10]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.33944, 10 )
+
+[sub_resource type="Curve2D" id=3]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 4.77031, -4.29517, 0, 0, 0, 0, 637.69, -2.09004, 0, 0, 0, 0, 1927.18, 3.70552, 0, 0, 0, 0, 562.156, 3.66038, 0, 0, 0, 0, 571.843, 1021.74, 0, 0, 0, 0, 1.00897, 1068.18, 0, 0, 0, 0, -0.320007, -5.4304 )
 }
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 32.0
 
 [node name="mundo" type="Node"]
 script = ExtResource( 1 )
 mosquito = ExtResource( 2 )
 
 [node name="interfaz" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
+
+[node name="JoyStick" type="Sprite" parent="interfaz"]
+editor/display_folded = true
+position = Vector2( 63.2779, 556.773 )
+scale = Vector2( 0.48225, 0.375971 )
+texture = ExtResource( 4 )
+
+[node name="joyStickButton" type="TouchScreenButton" parent="interfaz/JoyStick"]
+position = Vector2( 2.97885, -468.234 )
+normal = ExtResource( 5 )
+pressed = ExtResource( 6 )
+shape = SubResource( 1 )
+script = ExtResource( 7 )
 
 [node name="fondo" type="TextureRect" parent="."]
 margin_left = -2.0
 margin_top = -4.0
 margin_right = 1028.0
 margin_bottom = 602.0
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 expand = true
 stretch_mode = 1
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2( 17.0001, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 49.7787, 4.71614 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+position = Vector2( 49.7207, 4.43624 )
+scale = Vector2( 0.00233273, 0.0150493 )
+texture = ExtResource( 9 )
+
+[node name="Player" parent="." instance=ExtResource( 10 )]
 position = Vector2( 187.922, 584.887 )
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( -253.874, -719.244 )
+scale = Vector2( 7.14281, 9.999 )
+current = true
+zoom = Vector2( 0.3, 0.3 )
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 602
+editor_draw_drag_margin = true
+
 [node name="mosquitoTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 
 [node name="scoreTimer" type="Timer" parent="."]
 
@@ -46,28 +87,18 @@ wait_time = 2.0
 one_shot = true
 
 [node name="posicionInicial" type="Position2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 187.74, 586.644 )
 
 [node name="camino" type="Path2D" parent="."]
 position = Vector2( 2.12566, 371.354 )
 scale = Vector2( 0.168752, 0.220219 )
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 
 [node name="mosquitoPosicion" type="PathFollow2D" parent="camino"]
 position = Vector2( 4.77031, -4.29517 )
 rotation = 0.00348399
 
-[node name="JoyStick" type="Sprite" parent="."]
-position = Vector2( 65.5499, 540.897 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 6 )
-
-[node name="joyStickButton" type="TouchScreenButton" parent="JoyStick"]
-position = Vector2( 2.97885, -468.234 )
-normal = ExtResource( 7 )
-pressed = ExtResource( 8 )
-shape = SubResource( 2 )
-script = ExtResource( 9 )
+[node name="mosquito" parent="." instance=ExtResource( 2 )]
 [connection signal="down" from="interfaz" to="Player" method="directionDown"]
 [connection signal="iniciarJuego" from="interfaz" to="." method="nuevoJuego"]
 [connection signal="left" from="interfaz" to="Player" method="directionLeft"]
@@ -77,6 +108,7 @@ script = ExtResource( 9 )
 [connection signal="noup" from="interfaz" to="Player" method="_on_interfaz_noup"]
 [connection signal="rigth" from="interfaz" to="Player" method="directionRigth"]
 [connection signal="up" from="interfaz" to="Player" method="directionUp"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="golpe" from="Player" to="." method="gameOver"]
 [connection signal="timeout" from="mosquitoTimer" to="." method="_on_mosquitoTimer_timeout"]
 [connection signal="timeout" from="scoreTimer" to="." method="_on_scoreTimer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://run/1_autumn_Run_000.png" type="Texture" id=2]
@@ -30,6 +30,8 @@ animations = [ {
 radius = 67.1551
 height = 131.319
 
+[sub_resource type="CapsuleShape2D" id=3]
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 309.187, 772.129 )
 scale = Vector2( 0.140001, 0.10001 )
@@ -46,3 +48,11 @@ playing = true
 [node name="collisionPlayer" type="CollisionShape2D" parent="."]
 position = Vector2( 13.2477, -48.5714 )
 shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 9.63574, -47.9595 )
+scale = Vector2( 5.23543, 6.26398 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Player_body_entered"]

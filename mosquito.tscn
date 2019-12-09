@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://mosquito.gd" type="Script" id=1]
 [ext_resource path="res://lazy-mosquito/mosquito_00.png" type="Texture" id=2]
@@ -26,14 +26,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 31.7797
+
 [node name="mosquito" type="RigidBody2D"]
-position = Vector2( 20.2703, 15.6253 )
 collision_layer = 0
-gravity_scale = 0.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 velocidadMinima = 150
 velocidadMaxima = 250
 
@@ -50,4 +48,11 @@ position = Vector2( 70.5558, 65.8623 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 2 )
 animation = "volando"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 68.4211, 71.5789 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
