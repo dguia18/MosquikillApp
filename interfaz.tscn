@@ -3,11 +3,11 @@
 [ext_resource path="res://interfaz.gd" type="Script" id=1]
 [ext_resource path="res://Kabouter DEMO.otf" type="DynamicFontData" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 100
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 64
 font_data = ExtResource( 2 )
 
@@ -23,7 +23,7 @@ margin_left = -192.5
 margin_top = -65.0
 margin_right = 192.5
 margin_bottom = 65.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "MOSQUIKILL"
 align = 1
 valign = 1
@@ -37,7 +37,7 @@ margin_left = -89.9789
 margin_top = -255.348
 margin_right = 110.021
 margin_bottom = -165.348
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "JUGAR"
 
 [node name="mensajeTimer" type="Timer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://mundo.gd" type="Script" id=1]
 [ext_resource path="res://mosquito.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://mundo.jpg" type="Texture" id=8]
 [ext_resource path="res://meta.jpg" type="Texture" id=9]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Audio/efecto_mosca.wav" type="AudioStream" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -27,12 +28,11 @@ script = ExtResource( 1 )
 mosquito = ExtResource( 2 )
 
 [node name="interfaz" parent="." instance=ExtResource( 3 )]
-editor/display_folded = true
 
 [node name="JoyStick" type="Sprite" parent="interfaz"]
 editor/display_folded = true
-position = Vector2( 63.2779, 556.773 )
-scale = Vector2( 0.48225, 0.375971 )
+position = Vector2( 89.7779, 528.273 )
+scale = Vector2( 0.689281, 0.598627 )
 texture = ExtResource( 4 )
 
 [node name="joyStickButton" type="TouchScreenButton" parent="interfaz/JoyStick"]
@@ -99,6 +99,9 @@ position = Vector2( 4.77031, -4.29517 )
 rotation = 0.00348399
 
 [node name="mosquito" parent="." instance=ExtResource( 2 )]
+
+[node name="audioMoscas" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 [connection signal="down" from="interfaz" to="Player" method="directionDown"]
 [connection signal="iniciarJuego" from="interfaz" to="." method="nuevoJuego"]
 [connection signal="left" from="interfaz" to="Player" method="directionLeft"]

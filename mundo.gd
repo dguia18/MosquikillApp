@@ -5,6 +5,7 @@ var Score
 
 func _ready():
 	randomize()
+	$audioMoscas.play()
 	
 func nuevoJuego():
 	Score = 0

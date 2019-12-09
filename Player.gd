@@ -39,7 +39,7 @@ func _process(delta):
 		$AnimatedSprite.flip_h = movimiento.y > 0		
 	else:
 		$AnimatedSprite.animation = "frente"
-	var collision =  move_and_collide(joystick.get_value()*0.3)
+	var collision =  move_and_collide(joystick.get_value()*5)
 	
 		
 
